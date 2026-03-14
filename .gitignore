@@ -1,0 +1,42 @@
+# -*- Python -*-
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Output and Environments
+env/
+venv/
+.env
+.venv/
+build/
+dist/
+*.egg-info/
+*.egg
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# IDE / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+__MACOSX/
+
+# Deep Learning / YOLOv8 Specific
+runs/
+*.pt
+*.onnx
+*.engine
+*.tflite
+wandb/
+
+# Datasets and Data
+data/
+dataset/
+*.zip
+*.tar
+*.tar.gz
+*.rar
+*.csv
+*.json

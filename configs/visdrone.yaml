@@ -1,0 +1,31 @@
+# VisDrone Dataset Configuration for YOLOv8
+# Only targets "person" class (pedestrian + people merged into class 0)
+#
+# VisDrone Original Categories:
+#   0: ignored regions
+#   1: pedestrian       <- mapped to class 0
+#   2: people           <- mapped to class 0 (crowd)
+#   3: bicycle
+#   4: car
+#   5: van
+#   6: truck
+#   7: tricycle
+#   8: awning-tricycle
+#   9: bus
+#  10: motor
+#  11: others
+
+# Dataset root — change this to your VisDrone YOLO-converted path
+path: ./data
+
+# Relative paths from 'path'
+train: images/train
+val:   images/val
+test:  images/test
+
+# Number of classes (only person)
+nc: 1
+
+# Class names
+names:
+  0: person
