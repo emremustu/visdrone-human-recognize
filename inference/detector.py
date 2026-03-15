@@ -112,18 +112,22 @@ class HumanDetector:
         clss  = boxes.cls.cpu().numpy()    # (N,)
 
         for i in range(len(xyxy)):
+            cls_id = int(clss[i])
+            if cls_id not in [0, 1]:
+                continue
+            
             x1, y1, x2, y2 = xyxy[i]
             detections.append({
                 "x1"  : float(x1),
                 "y1"  : float(y1),
                 "x2"  : float(x2),
                 "y2"  : float(y2),
-                "conf": float(confs[i]),
-                "cls" : int(clss[i]),
-                "cx"  : float((x1 + x2) / 2),
-                "cy"  : float((y1 + y2) / 2),
-                "w"   : float(x2 - x1),
-                "h"   : float(y2 - y1),
+                "conf": float(confs[i]),       
+                "cls" : cls_id,
+                "cx"  : float((x1 + x2) / 2),  
+                "cy"  : float((y1 + y2) / 2),  
+                "w"   : float(x2 - x1),        
+                "h"   : float(y2 - y1),        
             })
         return detections
 
@@ -134,6 +138,10 @@ class HumanDetector:
         """
         detections = []
         for obj in prediction_result.object_prediction_list:
+            cls_id = int(obj.category.id)
+            if cls_id not in [0, 1]:
+                continue
+
             bbox = obj.bbox
             x1, y1, x2, y2 = bbox.minx, bbox.miny, bbox.maxx, bbox.maxy
             detections.append({
@@ -142,11 +150,11 @@ class HumanDetector:
                 "x2"  : float(x2),
                 "y2"  : float(y2),
                 "conf": float(obj.score.value),
-                "cls" : int(obj.category.id),
-                "cx"  : float((x1 + x2) / 2),
-                "cy"  : float((y1 + y2) / 2),
-                "w"   : float(x2 - x1),
-                "h"   : float(y2 - y1),
+                "cls" : cls_id,  
+                "cx"  : float((x1 + x2) / 2),  
+                "cy"  : float((y1 + y2) / 2),  
+                "w"   : float(x2 - x1),        
+                "h"   : float(y2 - y1),        
             })
         return detections
 
